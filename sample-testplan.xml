@@ -1,0 +1,12 @@
+<suite name="Sample" parallel="tests" thread-count="2">
+
+    <test name="Chrome">
+        <parameter name ="browser" value="chrome"/>
+        <parameter name ="url" value="https://the-internet.herokuapp.com/"/>
+        <classes>
+            <class name="POM.NewformAuthenicationTest">
+            </class>
+        </classes>
+    </test>
+
+</suite>
