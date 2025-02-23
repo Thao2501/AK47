@@ -38,7 +38,7 @@ public class NewformAuthenicationTest {
 
     @AfterMethod
     void tearDown(ITestResult iTestResult) {
-        if (!iTestResult.isSuccess()){
+        if (!iTestResult.isSuccess()) {
             captureScreen(iTestResult.getName());
         }
         quit();

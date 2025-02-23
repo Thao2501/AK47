@@ -11,57 +11,60 @@ import theInternet.pages.MousePage;
 import static Support.Browser.*;
 
 public class NewMouseTest {
+    MousePage mousePage;
+
+    public static String getPageUrl() {
+        return "https://the-internet.herokuapp.com/";
+    }
+
     @Parameters({"browser", "url"})
     @BeforeMethod
     void setUp(String browser, String url) {
         openBrowser(browser);
         visit(url);
+        mousePage = new MousePage();
+
     }
 
     @Test
     void dragDropTest() {
-        visit(MousePage.getPageUrl() + "drag_and_drop");
+        visit(getPageUrl() + "drag_and_drop");
 
-        MousePage dragFrop = new MousePage();
-        dragFrop.dragDropElements();
+        mousePage.dragDropElements();
 
-        Assert.assertEquals(dragFrop.getHeaderColumn1(), "B");
-        Assert.assertEquals(dragFrop.getHeaderColumn2(), "A");
+        Assert.assertEquals(mousePage.headerColumn1(), "B");
+        Assert.assertEquals(mousePage.headerColumn2(), "A");
     }
 
     @Test
     void horizontalTest() {
-        visit(MousePage.getPageUrl() + "horizontal_slider");
+        visit(getPageUrl() + "horizontal_slider");
 
-        MousePage horizontal = new MousePage();
-        horizontal.horizontalSlider();
-        horizontal.setClickHorizontal();
+        mousePage.clickAndHoldOnPointer();
+        mousePage.clickOut();
 
-        Assert.assertTrue(horizontal.range().contains("5"));
+        Assert.assertTrue(mousePage.range().contains("5"));
     }
 
     @Test
     void clickRightTest() {
-        visit(MousePage.getPageUrl() + "context_menu");
+        visit(getPageUrl() + "context_menu");
 
-        MousePage clickRight = new MousePage();
-        clickRight.setClickRight();
+        mousePage.setClickRight();
     }
 
     @Test
     void hoverToImage() {
-        visit(MousePage.getPageUrl() + "hovers");
+        visit(getPageUrl() + "hovers");
 
-        MousePage hover = new MousePage();
+        mousePage.hoverImage();
 
-        hover.setHover();
-
-        Assert.assertEquals(hover.setImageProfile1(), "name: user1");
+        Assert.assertEquals(mousePage.imageProfile(), "name: user1");
     }
 
     @Test
     void scrollDown() throws InterruptedException {
-        visit(MousePage.getPageUrl() + "infinite_scroll");
+        visit(getPageUrl() + "infinite_scroll");
 
         for (int i = 0; i < 5; i++) {
             actionScroll(0, 500);
@@ -71,11 +74,10 @@ public class NewMouseTest {
 
     @Test
     void keyPress() {
-        visit(MousePage.getPageUrl() + "key_presses");
-        MousePage keyPress = new MousePage();
+        visit(getPageUrl() + "key_presses");
 
         actionKeyPress("A");
-        Assert.assertTrue(keyPress.setKeyPress().contains("You entered: A"));
+        Assert.assertTrue(mousePage.resultKeyPress().contains("You entered: A"));
     }
 
     @AfterMethod

@@ -24,6 +24,7 @@ public class NewHyperlinkTest {
                 {"here", "https://the-internet.herokuapp.com/status_codes"},
         };
     }
+
     @Parameters({"browser", "url"})
 
     @BeforeClass
@@ -31,10 +32,13 @@ public class NewHyperlinkTest {
         openBrowser(browser);
         visit(url + "status_codes");
     }
+
     @Test(dataProvider = "testData")
     void hyperlinkTest(String code, String expectedUrl) {
         HyperlinkPage hyperlinkPage = new HyperlinkPage();
+
         click(hyperlinkPage.clickLink(code));
+
         Assert.assertEquals(getCurrentUrl(), expectedUrl);
     }
 

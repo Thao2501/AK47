@@ -1,17 +1,23 @@
 package theInternet.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static Support.Browser.*;
 
 public class LoadingPage {
     private By buttonStart = By.xpath("//button[.='Start']");
-    public static By textFinish = By.id("finish");
+    private By textFinish = By.id("finish");
 
-    public void clickButtonStart(){
+    public void clickButtonStart() {
         click(buttonStart);
     }
-    public String setTextFinish(){
+
+    public void waitToTextFinish() {
+        wait.until((ExpectedConditions.visibilityOfElementLocated(textFinish)));
+    }
+
+    public String textFinish() {
         return getText(textFinish);
     }
 }

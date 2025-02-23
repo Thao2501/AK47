@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 public class Browser {
     private static WebDriver driver;
@@ -54,7 +55,6 @@ public class Browser {
 
     public static By click(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-//        driver.findElement(locator).click();
         return locator;
     }
 
@@ -68,6 +68,10 @@ public class Browser {
 
     public static WebElement findElement(By locator) {
         return driver.findElement(locator);
+    }
+
+    public static List<WebElement> findElements(By locator) {
+        return driver.findElements(locator);
     }
 
     public static void captureScreen(String name) {
@@ -87,16 +91,6 @@ public class Browser {
 
     public static void uncheck(By locator) {
         if (driver.findElement(locator).isSelected()) click(locator);
-    }
-
-    public static void selectDropdownByValue(String value) {
-        Select select = new Select(driver.findElement(By.id("dropdown")));
-        select.selectByValue(value);
-    }
-
-    public static void selectDropdownByVisibleText(String value) {
-        Select select = new Select(driver.findElement(By.id("dropdown")));
-        select.selectByVisibleText(value);
     }
 
     public static void actionDragAndDrop(WebElement source, WebElement target) {
@@ -124,7 +118,8 @@ public class Browser {
         Actions actions = new Actions(driver);
         actions.scrollByAmount(x, y).perform();
     }
-    public static void actionKeyPress(String a){
+
+    public static void actionKeyPress(String a) {
         Actions actions = new Actions(driver);
         actions.keyDown(a).perform();
     }
@@ -132,4 +127,18 @@ public class Browser {
     public static void timeWait(int x) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(x));
     }
+
+    public static void maximize() {
+        driver.manage().window().maximize();
+
+    }
+
+    public static boolean isSelected(By locator) {
+        return driver.findElement(locator).isSelected();
+    }
+
+    public static boolean isEnabled(By locator) {
+        return driver.findElement(locator).isEnabled();
+    }
+
 }

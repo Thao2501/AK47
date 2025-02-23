@@ -1,19 +1,24 @@
 package theInternet.pages;
 
+import Support.Browser;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
-import static Support.Browser.*;
+import static Support.Browser.findElement;
 
 public class DropdownPage {
-    private By option1 =By.cssSelector("option[value='1']");
-    private By option2 =By.cssSelector("option[value='2']");
+    private Select select;
 
-    public WebElement selectOption1() {
-        return findElement(option1);
+    public DropdownPage() {
+        select = new Select(findElement(By.id("dropdown")));
     }
-    public WebElement selectOption2() {
-        return findElement(option2);
+
+    public void select(String optionVisibleText){
+        select.selectByVisibleText(optionVisibleText);
+    }
+
+    public boolean isOptionSelected(String optionVisibleText){
+       return Browser.isSelected(By.xpath(String.format("//option[text()='%s']",optionVisibleText)));
     }
 }
 

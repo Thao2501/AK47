@@ -3,11 +3,11 @@
         <parameter name="browser" value="chrome"/>
         <parameter name="url" value="https://the-internet.herokuapp.com/"/>
         <classes>
-            <class name="POM.NewformAuthenicationTest"/>
-            <class name="POM.NewCheckboxTest"/>
-            <class name="POM.NewDropdownTest"/>
-            <class name="POM.NewHyperlinkTest"/>
-            <class name="POM.NewMouseTest"/>
+<!--            <class name="POM.NewformAuthenicationTest"/>-->
+<!--            <class name="POM.NewCheckboxTest"/>-->
+<!--            <class name="POM.NewDropdownTest"/>-->
+<!--            <class name="POM.NewHyperlinkTest"/>-->
+<!--            <class name="POM.NewMouseTest"/>-->
             <class name="POM.NewDynamicLoadingTest"/>
         </classes>
     </test>

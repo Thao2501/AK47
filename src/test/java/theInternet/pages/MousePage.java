@@ -14,65 +14,62 @@ public class MousePage {
 
     private By valuePointer = By.xpath("//div[@class='sliderContainer']/input");
     private By range = By.id("range");
-
-    private By clickHorizontal = By.className("example");
+    private By textAround = By.className("example");
 
     private By clickRight = By.id("hot-spot");
 
     private By image1 = By.xpath("//div[@class='example']/div[1]/img");
     private By imageProfile1 = By.xpath("//div[@class='example']/div[1]/div/h5");
 
-    private By keyPress = By.id("result");
+    private By result = By.id("result");
 
+    //Action DragDrop
     public void dragDropElements() {
         WebElement source = findElement(column1);
         WebElement target = findElement(column2);
         actionDragAndDrop(source, target);
     }
 
-    public String getHeaderColumn1() {
+    public String headerColumn1() {
         return getText(headerColumn1);
     }
 
-    public String getHeaderColumn2() {
+    public String headerColumn2() {
         return getText(headerColumn2);
     }
 
-    public void horizontalSlider() {
+    //Action Horizontal Slide
+    public void clickAndHoldOnPointer() {
 
         WebElement pointer = findElement(valuePointer);
         int width = pointer.getSize().getWidth();
         actionClickAndHold(pointer, width, 0);
     }
-
+    public void clickOut() {
+        click(textAround);
+    }
     public String range() {
         return getText(range);
     }
 
-    public static String getPageUrl() {
-        return "https://the-internet.herokuapp.com/";
-    }
-
-    public void setClickHorizontal() {
-        click(clickHorizontal);
-    }
-
+    //Action ClickRight
     public  void setClickRight() {
         WebElement right = findElement(clickRight);
         actionClickRight(right);
     }
 
-    public void setHover() {
+    //Action Hover
+    public void hoverImage() {
         WebElement image = findElement(image1);
         actionHover(image);
     }
 
-    public String setImageProfile1() {
+    public String imageProfile() {
         return getText(imageProfile1);
     }
-
-    public String setKeyPress() {
-        return getText(keyPress);
+    //Action KeyPress
+    public String resultKeyPress() {
+        return getText(result);
     }
 }
 

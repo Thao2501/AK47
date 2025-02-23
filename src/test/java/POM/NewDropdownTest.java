@@ -11,25 +11,25 @@ import theInternet.pages.DropdownPage;
 import static Support.Browser.*;
 
 public class NewDropdownTest {
+    DropdownPage dropdownPage;
     @Parameters({"browser", "url"})
     @BeforeMethod
     void setUp(String browser, String url) {
         openBrowser(browser);
         visit(url + "dropdown");
+        dropdownPage = new DropdownPage();
     }
 
     @Test
-    void option1() {
-        selectDropdownByValue("1");
-        DropdownPage test = new DropdownPage();
-        Assert.assertTrue(test.selectOption1().isSelected());
+    void selectOption1() {
+        dropdownPage.select("Option 1");
+        Assert.assertTrue(dropdownPage.isOptionSelected("Option 1"));
     }
 
     @Test
-    void option2() {
-        selectDropdownByVisibleText("Option 2");
-        DropdownPage test = new DropdownPage();
-        Assert.assertTrue(test.selectOption2().isSelected());
+    void selectOption2() {
+        dropdownPage.select("Option 2");
+        Assert.assertTrue(dropdownPage.isOptionSelected("Option 2"));
     }
 
     @AfterMethod
